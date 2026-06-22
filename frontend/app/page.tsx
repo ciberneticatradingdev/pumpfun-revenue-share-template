@@ -47,7 +47,11 @@ export default function TokenPage() {
     },
     {
       question: "IS THERE A MINIMUM TO QUALIFY?",
-      answer: `Yes. You must hold at least 500,000 tokens to qualify for distributions. Wallets holding more than 40,000,000 tokens (4%+) are excluded to keep distributions fair for all holders.`
+      answer: `Yes. You must hold at least 500,000 tokens to qualify for distributions. This filters out dust wallets and keeps gas costs low for everyone.`
+    },
+    {
+      question: "IS THERE A MAXIMUM HOLDING LIMIT?",
+      answer: `Yes. To keep rewards fair and prevent whale domination, any wallet holding more than 40,000,000 ${config.tokenName} tokens (approximately 4% of supply) is completely excluded from receiving USDC distributions. Large holders still benefit from the token's value appreciation — but the USDC rewards go to the community. This ensures rewards are spread across real holders, not concentrated in a few whales.`
     }
   ]
 
@@ -69,7 +73,7 @@ export default function TokenPage() {
     }
   ]
 
-  const marqueeText = "★ AUTO USDC DISTRIBUTIONS EVERY 5 MINUTES ● 15% RESERVED FOR GAS ● NO STAKING REQUIRED ● HOLD 500K+ TOKENS TO QUALIFY ● NO CLAIM REQUIRED ● REAL DOLLAR REWARDS ● "
+  const marqueeText = "★ AUTO USDC DISTRIBUTIONS EVERY 5 MINUTES ● 15% RESERVED FOR GAS ● NO STAKING REQUIRED ● HOLD 500K+ TOKENS TO QUALIFY ● WHALES OVER 4% EXCLUDED ● NO CLAIM REQUIRED ● REAL DOLLAR REWARDS ● "
 
   return (
     <div className="min-h-screen bg-[#060D1F]">
@@ -173,6 +177,21 @@ export default function TokenPage() {
                 LIVE DASHBOARD →
               </a>
             </div>
+          </div>
+        </div>
+
+        {/* Whale Cap Warning Banner */}
+        <div className="bg-[#DC2626] border-4 border-black p-4 flex items-center gap-4">
+          <div className="flex-shrink-0">
+            <span className="text-3xl">⚠️</span>
+          </div>
+          <div>
+            <p className="text-white font-black text-sm uppercase tracking-wide mb-1">
+              ANTI-WHALE PROTECTION ACTIVE
+            </p>
+            <p className="text-white/90 text-xs">
+              Wallets holding more than <span className="font-bold">40,000,000 {config.tokenName}</span> (~4% of supply) are <span className="font-bold">excluded</span> from USDC distributions. Rewards go to the community, not to whales.
+            </p>
           </div>
         </div>
 
