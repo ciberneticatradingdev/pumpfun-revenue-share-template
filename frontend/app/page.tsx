@@ -6,7 +6,7 @@ import Image from "next/image"
 import { config } from "@/lib/config"
 
 export default function TokenPage() {
-  const [countdown, setCountdown] = useState(90)
+  const [countdown, setCountdown] = useState(300)
   const [copied, setCopied] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
@@ -14,7 +14,7 @@ export default function TokenPage() {
     const timer = setInterval(() => {
       setCountdown(prev => {
         if (prev > 0) return prev - 1
-        return 90
+        return 300
       })
     }, 1000)
     return () => clearInterval(timer)
@@ -35,7 +35,7 @@ export default function TokenPage() {
   const faqItems = [
     {
       question: "DO I NEED TO STAKE OR CLAIM ANYTHING?",
-      answer: `No. USDC rewards are automatically distributed to your wallet every 90 seconds. Just hold ${config.tokenName} and receive rewards — no actions required.`
+      answer: `No. USDC rewards are automatically distributed to your wallet every 5 minutes. Just hold ${config.tokenName} and receive rewards — no actions required.`
     },
     {
       question: "WHAT IS THE REWARD TOKEN?",
@@ -43,11 +43,11 @@ export default function TokenPage() {
     },
     {
       question: "HOW IS MY SHARE CALCULATED?",
-      answer: `Your share is proportional to your ${config.tokenName} balance at each 90-second snapshot relative to total eligible supply. Diamond hands holders get a 3x multiplier.`
+      answer: `Your share is proportional to your ${config.tokenName} balance at each 5-minute snapshot relative to total eligible supply. Hold more, earn more.`
     },
     {
       question: "IS THERE A MINIMUM TO QUALIFY?",
-      answer: "Yes. You must hold more than 0.5% of supply to qualify. Wallets holding more than 4% are excluded to keep distributions fair for all holders."
+      answer: "Yes. You must hold at least 500,000 tokens to qualify for distributions. This filters out dust wallets and keeps gas costs low for everyone."
     }
   ]
 
@@ -60,7 +60,7 @@ export default function TokenPage() {
     {
       number: "02",
       title: "AUTO-COLLECT",
-      description: "Every 90 seconds a permissionless on-chain program collects the accumulated fees — no human required."
+      description: "Every 5 minutes a permissionless on-chain program collects the accumulated fees — no human required."
     },
     {
       number: "03",
@@ -69,7 +69,7 @@ export default function TokenPage() {
     }
   ]
 
-  const marqueeText = "★ AUTO USDC DISTRIBUTIONS EVERY 90 SECONDS ● DIAMOND HANDS = 3× BOOST ● NO STAKING REQUIRED ● HOLD > 0.5% OF SUPPLY TO QUALIFY ● NO CLAIM REQUIRED ● REAL DOLLAR REWARDS ● "
+  const marqueeText = "★ AUTO USDC DISTRIBUTIONS EVERY 5 MINUTES ● 15% RESERVED FOR GAS ● NO STAKING REQUIRED ● HOLD 500K+ TOKENS TO QUALIFY ● NO CLAIM REQUIRED ● REAL DOLLAR REWARDS ● "
 
   return (
     <div className="min-h-screen bg-[#060D1F]">
@@ -164,7 +164,7 @@ export default function TokenPage() {
             </h2>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <p className="text-[#BFDBFE] text-sm max-w-md">
-                Every 90 seconds, trading fees are auto-collected, swapped into USDC, and airdropped to your wallet instantly. No staking. No claiming.
+                Every 5 minutes, trading fees are auto-collected, swapped into USDC, and airdropped to your wallet instantly. No staking. No claiming.
               </p>
               <a
                 href="/dashboard"
@@ -185,7 +185,7 @@ export default function TokenPage() {
               US<span className="text-[#60A5FA]">DC</span>
             </h3>
             <p className="text-sm text-[#BFDBFE]">
-              Real dollar value, delivered directly to your wallet. No volatility, no speculation — just USDC on Solana every 90 seconds.
+              Real dollar value, delivered directly to your wallet. No volatility, no speculation — just USDC on Solana every 5 minutes.
             </p>
           </div>
 
