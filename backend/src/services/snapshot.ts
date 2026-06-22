@@ -55,7 +55,7 @@ export async function takeSnapshot(): Promise<SnapshotResult> {
   const exclusionSet = new Set<string>([
     config.walletPublicKey.toBase58(),
     config.pumpAmm.toBase58(),
-    config.feeAccount.toBase58(),
+    config.pumpswapProgram.toBase58(),
   ]);
 
   // Dynamically exclude bonding curve and associated bonding curve

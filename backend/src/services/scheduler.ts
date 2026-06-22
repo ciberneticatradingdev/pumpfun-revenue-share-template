@@ -42,8 +42,11 @@ async function runLoop(): Promise<void> {
       // Step 1: Claim fees
       const claimResult = await claimCreatorFees();
 
-      if (!claimResult || parseFloat(claimResult.amountUsdc) < config.minClaimUsdc) {
-        logger.info('Nothing to distribute (below threshold or no claim)');
+      if (!claimResult || (parseFloat(claimResult.amountUsdc) < config.minClaimUsdc && parseFloat(claimResult.amountSol) <= 0)) {
+        logger.info('Nothing to distribute (below threshold or no claim)', {
+          amountUsdc: claimResult?.amountUsdc,
+          amountSol: claimResult?.amountSol,
+        });
       } else {
         // Step 2: Take snapshot
         const snapshot = await takeSnapshot();
