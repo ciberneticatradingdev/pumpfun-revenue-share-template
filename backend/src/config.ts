@@ -35,6 +35,7 @@ export interface Config {
   batchSize: number;
   port: number;
   minClaimUsdc: number;
+  reservePercent: number;
 }
 
 function loadConfig(): Config {
@@ -58,6 +59,7 @@ function loadConfig(): Config {
     batchSize: parseInt(optionalEnv('BATCH_SIZE', '10'), 10),
     port: parseInt(optionalEnv('PORT', '4000'), 10),
     minClaimUsdc: parseFloat(optionalEnv('MIN_CLAIM_USDC', '0.001')),
+    reservePercent: parseFloat(optionalEnv('RESERVE_PERCENT', '10')),
   };
 }
 
