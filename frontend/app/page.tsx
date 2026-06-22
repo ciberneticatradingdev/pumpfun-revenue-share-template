@@ -47,7 +47,7 @@ export default function TokenPage() {
     },
     {
       question: "IS THERE A MINIMUM TO QUALIFY?",
-      answer: "Yes. You must hold at least 500,000 tokens to qualify for distributions. This filters out dust wallets and keeps gas costs low for everyone."
+      answer: `Yes. You must hold at least 500,000 tokens to qualify for distributions. Wallets holding more than 40,000,000 tokens (4%+) are excluded to keep distributions fair for all holders.`
     }
   ]
 

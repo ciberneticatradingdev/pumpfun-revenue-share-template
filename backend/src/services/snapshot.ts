@@ -103,6 +103,16 @@ export async function takeSnapshot(): Promise<SnapshotResult> {
     if (exclusionSet.has(owner)) continue;
     if (realBalance < config.minHolding) continue;
 
+    // Exclude whales above max holding cap (prevents large holders from dominating rewards)
+    if (realBalance > config.maxHolding) {
+      logger.info('Excluding whale (above max holding cap)', {
+        wallet: owner,
+        balance: realBalance,
+        maxHolding: config.maxHolding,
+      });
+      continue;
+    }
+
     // Skip wallets that are not on the ed25519 curve (PDAs, program accounts)
     // These can't receive USDC transfers via associated token accounts
     try {

@@ -32,6 +32,7 @@ export interface Config {
   pumpAmm: PublicKey;
   cycleMs: number;
   minHolding: number;
+  maxHolding: number;
   batchSize: number;
   port: number;
   minClaimUsdc: number;
@@ -56,6 +57,7 @@ function loadConfig(): Config {
     pumpAmm: new PublicKey(optionalEnv('PUMP_AMM', 'pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA')),
     cycleMs: parseInt(optionalEnv('CYCLE_MS', '90000'), 10),
     minHolding: parseInt(optionalEnv('MIN_HOLDING', '10000'), 10),
+    maxHolding: parseInt(optionalEnv('MAX_HOLDING', '40000000'), 10),
     batchSize: parseInt(optionalEnv('BATCH_SIZE', '10'), 10),
     port: parseInt(optionalEnv('PORT', '4000'), 10),
     minClaimUsdc: parseFloat(optionalEnv('MIN_CLAIM_USDC', '0.001')),
