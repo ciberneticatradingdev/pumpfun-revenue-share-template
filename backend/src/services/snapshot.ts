@@ -103,6 +103,15 @@ export async function takeSnapshot(): Promise<SnapshotResult> {
     if (exclusionSet.has(owner)) continue;
     if (realBalance < config.minHolding) continue;
 
+    // Skip wallets that are not on the ed25519 curve (PDAs, program accounts)
+    // These can't receive USDC transfers via associated token accounts
+    try {
+      const ownerPubkey = new PublicKey(ownerBytes);
+      if (!PublicKey.isOnCurve(ownerPubkey)) continue;
+    } catch {
+      continue;
+    }
+
     holders.push({ wallet: owner, rawBalance: rawAmount });
     totalEligibleSupply += rawAmount;
   }

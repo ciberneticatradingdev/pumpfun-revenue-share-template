@@ -77,6 +77,20 @@ export async function distributeUsdc(
 
     if (amountRaw < dustThreshold) continue;
 
+    // Skip wallets that are not on the ed25519 curve (PDAs, program accounts)
+    // getAssociatedTokenAddressSync throws TokenOwnerOffCurveError for these
+    let recipientPubkey: PublicKey;
+    try {
+      recipientPubkey = new PublicKey(holder.wallet);
+      if (!PublicKey.isOnCurve(recipientPubkey)) {
+        logger.warn('Skipping off-curve wallet (PDA)', { wallet: holder.wallet });
+        continue;
+      }
+    } catch {
+      logger.warn('Skipping invalid wallet', { wallet: holder.wallet });
+      continue;
+    }
+
     const amountUsdc = formatUsdcAmount(amountRaw);
 
     payments.push({
